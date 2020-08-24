@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "www.cosmos547.moe"
 languageCode = "en-us"
 DefaultContentLanguage = "en"
 theme = "terminal"
