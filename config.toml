@@ -1,4 +1,4 @@
-baseurl = "www.cosmos547.moe"
+baseurl = "/"
 languageCode = "en-us"
 DefaultContentLanguage = "en"
 theme = "terminal"
@@ -60,7 +60,7 @@ paginate = 10
     missingBackButtonLabel = "Back to home page"
 
     [languages.en.params.logo]
-      logoText = "Terminal"
+      logoText = "Cosmos Atlas"
       logoHomeLink = "/"
 
     [languages.en.menu]
@@ -86,7 +86,7 @@ paginate = 10
     missingBackButtonLabel = "Back to home page"
 
     [languages.zh.params.logo]
-      logoText = "Terminal"
+      logoText = "星空 图册"
       logoHomeLink = "/"
 
     [languages.zh.menu]
