@@ -3,6 +3,7 @@ languageCode = "en-us"
 DefaultContentLanguage = "en"
 theme = "terminal"
 paginate = 10
+googleAnalytics = "UA-176420785-1"
 
 [params]
   # dir name of your main content (default is `content/posts`).
