@@ -1,0 +1,123 @@
+---
+title: "Hugo With Asciidoc"
+date: 2020-08-26T16:00:44+08:00
+author: "Wenhan Zhu (Cosmos)"
+cover: ""
+tags: 
+- "hugo"
+- "asciidoc"
+- "asciidoctor"
+- "blog"
+keywords:
+- "hugo"
+- "asciidoc"
+- "asciidoctor"
+description: "Experimenting Hugo with asciidoc"
+showFullContent: false
+draft: false
+---
+
+## Why Asciidoc?
+
+link:https://asciidoc.org/[Asciidoc] is an alternative plain text document format to Markdown. At the every basic level, it provides much more concise control to the document and is more suited for technical writing especially for software documentation.
+
+Markdown by design, is most suited for writing normal text with easy conversions to HTML. The link:https://daringfireball.net/projects/markdown/[original markdown] specs is vague and not concise. Many flavors of markdown is extended upon the original markdown syntax. 
+
+Some markdown flavors
+
+* GitHub Flavored Markdown (GFM) -- probably the most popular among programmers due to _GitHub_
+* CommonMark -- An extension with many features
+* Pandoc -- markdown with many extra features to work with the Pandoc document converter
+
+With so many different flavors and variations between different markdown flavors, although being probably the most popular markup language for the web, you can end up with situations where you wish to use a feature that's supported by one flavor but not available in the flavor that you have to use. For example, Stack Overflow's version of markdown do not support tables extension while most other flavors supports them.
+
+## Asciidoc in Hugo
+
+Hugo's supports a variety of content formats out of the box. Different content format rely on different backends. As long as the backend exists on the system, Hugo will do the work automatically. Asciidoc support is done by the package _asciidoctor_ from _gem_. Not to confuse with the _asciidoc_ package which is planed to be deprecated at the end of 2020 and completely take over by _asciidoctor_.
+
+So, how does the support work out of the box? The quick answer is _it kind of works_. You get something very similar to _GitHub_'s asciidoc preview and nothing really breaks. The biggest draw back is it doesn't have the _css_ setup like what you would get from the default _asciidoctor_ output.
+
+## Improvements for better asciidoc rendering
+
+Just like most things in the tech world, this problem prabably have being already thought though by someone. Inspired by the following two blog posts, here are some modifications I made to improve my hugo blogging with asciidoc.
+
+- link:++https://blog.anoff.io/2019-02-17-hugo-render-asciidoc/++[Get Hugo to render (nice) Asciidocs]
+- link:++https://foo-dogsquared.github.io/blog/posts/blogging-with-asciidoctor-and-hugo/++[Blogging with Asciidoctor and Hugo]
+
+### HTML output from _asciidoctor_
+
+The default _asciidoctor_ HTML output is not ideal in many situations. Most importantly it's not semantic so it's hard to parse by person. (Meanwhile why would you?) An extension in _gem_ for _asciidoctor_ called `asciidoctor-html5s` fixes this issue. So calling _asciidoctor_ with the correct argument would provide you with better HTML outputs. 
+
+ asciidoctor -r asciidoctor-html5s -b html5s example.adoc
+
+However, there's a catch to Hugo. Hugo hardcodes calling _asciidoctor_ with fixed arguments in its source code. Modifying the source code definitely fix it, but on _*NIX_ systems you can overrite the `asciidoctor` command with the arguments built in.
+
+One way to do it is to save a file called `asciidoctor` at the root of the Hugo directory
+```bash
+#!/bin/sh
+/usr/bin/asciidoctor -r asciidoctor-html5s -b html5s "$@"
+```
+replace `/usr/bin/asciidoctor` to where your `asciidoctor` bin file is located on your system
+
+[NOTE]
+=====
+Remember to make the file executable by `chmod +x ./asciidoctor`
+=====
+
+Then execute Hugo with
+
+ PATH=$PWD:$PATH hugo server -D
+
+So Hugo will use our own customized version.
+
+### Better admonitions
+
+If you previewed your asciidoc file before and after using the `asciioctor-html5s` extension. You'll notice the admonition have changed. Before it looks like a 1x2 table (I believe that how _GitHub_ 'translates' admonitions) with the admonition text on the left and the content on the right. Now it just look like a header followed by a paragraph. This is definitely not ideal. We need to fix that.
+
+fix-admonition.js
+[source,javascript]
+----
+// replace the default admonitions block with one that looks like the antora output to apply similar styling via adoc.css
+window.addEventListener('load', function () {
+  const admonitions = document.getElementsByClassName('admonition-block')
+  for (let i = admonitions.length - 1; i >= 0; i--) {
+    const elm = admonitions[i]
+    const type = elm.classList[1]
+    const text = elm.getElementsByTagName('p')[0].innerHTML
+    const parent = elm.parentNode
+    const tempDiv = document.createElement('div')
+    tempDiv.innerHTML = `<div class="admonitionblock ${type}">
+    <table>
+      <tbody>
+        <tr>
+          <td class="icon">
+            <i class="fa icon-${type}" title="${type}"></i>
+          </td>
+          <td class="content">
+            ${text}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>`
+
+    const input = tempDiv.childNodes[0]
+    parent.replaceChild(input, elm)
+  }
+})
+----
+Credit: link:++https://blog.anoff.io/2019-02-17-hugo-render-asciidoc/++[Get Hugo to render (nice) Asciidocs]
+
+Now we get our admonitions behave like before.
+
+### Verdict
+
+You'll probably noticed by now, this blog post have some _none markdown_ features such as the admonition block earlier. In fact, this blog is written in asciidoc and I've tweaked my Hugo config files with the fixes above and adjusted some aesthetics.
+
+So what are my final thoughts on using asciidoc? After some experimenting with asciidoc rendering with Hugo and applying changes and fixes found around the web. I came to the realization that in order to have nicely lookly asciidoc HTML rendered by Hugo, I'll need to write a long _css_ file to customize the hell out of it. 
+
+Someone have already created a theme for Hugo that is intended to support asciidoc nicely.
+
+- link:https://github.com/foo-dogsquared/hugo-theme-arch-terminal[hugo-theme-arch-terminal]
+
+For me afterall, I think I'll stick with markdown for writing my blog at the moment. Maybe one day I'll be interested in designing my own blogging theme, by then I'll reconsider using asciidoc to write my blog.
