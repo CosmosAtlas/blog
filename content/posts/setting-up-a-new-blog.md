@@ -116,5 +116,28 @@ In the Hugo docs, they highlight the word "translation", I'm guess it assumes th
 
 The `hugo-theme-terminal` themes have a language selector built in. However, it seems to be broken. After some investigation, it turns out to be an easy fix. I've submitted a pull request to fix this issue. I'll update this post base on the result.
 
----
-To be continued...
+### Information pages
+
+Alongside with the blog, most blogs have other sections that contain information about the blog owner.
+
+- About page -- Information about the blog owner
+- Tags page -- List of all tags
+
+## Deploying 
+
+Now the blog is set up and running. The only thing left is to deploy the blog. I won't list the details here since they vary a lot depend on your options. And there's already a ton of great material out there on the web. Additionally many of the information change from time to time, so it's best to refer to their official page.
+
+Steps to deploy to _GitHub Pages_ with Hugo:
+
+- [Create your _GitHub_ pages repo](https://pages.github.com/)
+- (Optional) Get a domain
+- (Optional) [Link the domain to your _GitHub pages_ repo.](https://docs.github.com/en/github/working-with-github-pages/configuring-a-custom-domain-for-your-github-pages-site) -- Note DNS takes up to 24 hrs to propagate
+- [Upload the built Hugo site to your _GitHub pages_ repo](https://gohugo.io/hosting-and-deployment/hosting-on-github/)
+
+After these steps, the blog is up and running and accessible from the web!
+
+## More to read
+
+Hugo supports many content formats. Here's my other blog post on Hugo and asciidoc.
+
+- [Hugo with asciidoc]({{< ref "posts/hugo-with-asciidoc" >}})
