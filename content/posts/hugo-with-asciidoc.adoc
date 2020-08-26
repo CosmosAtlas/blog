@@ -48,7 +48,9 @@ Just like most things in the tech world, this problem prabably have being alread
 
 The default _asciidoctor_ HTML output is not ideal in many situations. Most importantly it's not semantic so it's hard to parse by person. (Meanwhile why would you?) An extension in _gem_ for _asciidoctor_ called `asciidoctor-html5s` fixes this issue. So calling _asciidoctor_ with the correct argument would provide you with better HTML outputs. 
 
- asciidoctor -r asciidoctor-html5s -b html5s example.adoc
+```sh
+asciidoctor -r asciidoctor-html5s -b html5s example.adoc
+```
 
 However, there's a catch to Hugo. Hugo hardcodes calling _asciidoctor_ with fixed arguments in its source code. Modifying the source code definitely fix it, but on _*NIX_ systems you can overrite the `asciidoctor` command with the arguments built in.
 
@@ -66,7 +68,9 @@ Remember to make the file executable by `chmod +x ./asciidoctor`
 
 Then execute Hugo with
 
- PATH=$PWD:$PATH hugo server -D
+```sh
+PATH=$PWD:$PATH hugo server -D
+```
 
 So Hugo will use our own customized version.
 
@@ -74,7 +78,7 @@ So Hugo will use our own customized version.
 
 If you previewed your asciidoc file before and after using the `asciioctor-html5s` extension. You'll notice the admonition have changed. Before it looks like a 1x2 table (I believe that how _GitHub_ 'translates' admonitions) with the admonition text on the left and the content on the right. Now it just look like a header followed by a paragraph. This is definitely not ideal. We need to fix that.
 
-fix-admonition.js
+Credit: link:++https://blog.anoff.io/2019-02-17-hugo-render-asciidoc/++[Get Hugo to render (nice) Asciidocs]
 [source,javascript]
 ----
 // replace the default admonitions block with one that looks like the antora output to apply similar styling via adoc.css
@@ -106,7 +110,6 @@ window.addEventListener('load', function () {
   }
 })
 ----
-Credit: link:++https://blog.anoff.io/2019-02-17-hugo-render-asciidoc/++[Get Hugo to render (nice) Asciidocs]
 
 Now we get our admonitions behave like before.
 
