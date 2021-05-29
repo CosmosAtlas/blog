@@ -177,6 +177,7 @@ price. However, here I'll put some references on how much a card is compared to
 other at the moment.
 
 | Card Name      | Price |
+|----------------|-------|
 | Origin R4      | ~$10  |
 | DSTWO          | ~$60  |
 | Any other card | ~$20  |
