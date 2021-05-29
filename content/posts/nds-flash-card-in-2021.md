@@ -142,18 +142,18 @@ that works well. However, they do have other issues which I'll go over.
 | Origin R4    |                                       No |                           YS+Wood | Only supports up to 2GB tf card                                                                         |
 | DSTTi        |                                       No |                           YS+Wood |                                                                                                         |
 | AceKard2i    |                                       No | AKAIO (what Wood is derived from) |                                                                                                         |
-| DSOnei       |                                       No |                               EOS |                                                                                                         |
+| DSOnei       |                                      Yes |                               EOS |                                                                                                         |
 | DSTWO        |                                      Yes |                     EOS for DSTWO | Have special hardware to play GBA and SNES games. Reduced battery life also due to the special hardware |
 | *r4isdhc.hk* |                                      Yes | R4iNP (custom version of YS+Wood) | The year on top left from 2014-2018 are just labels                                                     |
 
-So, in short, DSTWO and a *r4isdhc.hk* card is your best bet for running on any
-system and likely have no issues with game compatibility. However, as stated on
-the background part, if you are willing to get CFW running on your NDSi/3DS
-(which is really easy), the DSTTi, AceKard2i, and DSOnei are also good choices.
-And if 2GB does not limit you (which really doesn't matter, the largest NDS
-games is ~300Mb), it's also a great choice. On a side note, it is actually
-uncommon to see a new branded 2GB tf card in 2021 (probably because even a 32GB
-card is dirt cheap these days...).
+So, in short, DSOnei, DSTWO and a *r4isdhc.hk* card is your best bet for
+running on any system and likely have no issues with game compatibility.
+However, as stated on the background part, if you are willing to get CFW
+running on your NDSi/3DS (which is really easy), the DSTTi and AceKard2i are
+also good choices. And if 2GB does not limit you (which really doesn't matter,
+the largest NDS games is ~300Mb), it's also a great choice. On a side note, it
+is actually uncommon to see a new branded 2GB tf card in 2021 (probably because
+even a 32GB card is dirt cheap these days...).
 
 ## How to choose your flash card
 
@@ -166,7 +166,7 @@ I'll ask you two big questions,
 |------------------------:|--------------:|:------------------------------------------------------|
 |                     Yes |           Yes | DSTTi, AceKard2i, DSOnei, DSTWO, *r4isdhc.hk*         |
 |                     Yes |            No | Any card I've mentioned                               |
-|                      No |           Yes | DSTWO, *r4isdhc.hk*                                   |
+|                      No |           Yes | DSOnei, DSTWO, *r4isdhc.hk*                           |
 |                      No |            No | One of the wood cards that can run on newest firmware |
 
 ## Closing up
