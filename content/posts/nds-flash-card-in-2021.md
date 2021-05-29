@@ -11,7 +11,7 @@ keywords:
 - ""
 description: ""
 showFullContent: false
-draft: true
+draft: false
 ---
 
 [TL:DR](#-How-to-choose-your-flash-card)
