@@ -14,7 +14,7 @@ showFullContent: false
 draft: false
 ---
 
-[TL:DR](#-How-to-choose-your-flash-card)
+> TL;DR: Skip to "How to choose your flash card" section
 
 ## Why this post
 
